@@ -4,7 +4,11 @@ import com.haulmont.cuba.core.entity.Entity;
 import com.haulmont.cuba.gui.WindowManager;
 import com.haulmont.cuba.gui.components.Action;
 import com.haulmont.cuba.gui.components.Frame;
+import com.haulmont.cuba.gui.components.ListComponent;
 import com.haulmont.cuba.gui.components.Window;
+import com.haulmont.cuba.gui.model.ScreenData;
+import com.haulmont.cuba.gui.screen.FrameOwner;
+import com.haulmont.cuba.gui.screen.OpenMode;
 
 public interface WithLogEntriesSupportExecution {
 
@@ -13,11 +17,10 @@ public interface WithLogEntriesSupportExecution {
     String ACTION_ID = "logEntry";
 
 
-    Window openLogEntryBrowse(Frame frame, Action action, Entity entity, WindowManager.OpenType openType);
-
-    void updateCaption(Action action, Entity entity);
-
-    void setIcon(Action action);
-
+    void openLogEntryBrowse(
+            FrameOwner frameOwner,
+            ListComponent target,
+            OpenMode openMode
+    );
 
 }

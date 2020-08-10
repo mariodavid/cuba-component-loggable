@@ -1,5 +1,6 @@
 package de.diedavids.cuba.loggable.web.screens.loglevel;
 
+import com.haulmont.cuba.core.entity.Entity;
 import com.haulmont.cuba.gui.screen.*;
 import de.diedavids.cuba.loggable.entity.LogLevel;
 
@@ -8,4 +9,6 @@ import de.diedavids.cuba.loggable.entity.LogLevel;
 @LookupComponent("logLevelsTable")
 @LoadDataBeforeShow
 public class LogLevelBrowse extends StandardLookup<LogLevel> {
+
+
 }

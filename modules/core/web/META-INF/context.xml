@@ -7,7 +7,7 @@
               name="jdbc/CubaDS"
               password=""
               type="javax.sql.DataSource"
-              url="jdbc:hsqldb:hsql://localhost/ddcl-08x"
+              url="jdbc:hsqldb:hsql://localhost/ddcl-08234"
               username="sa"/>
     <!-- Switch off session serialization -->
     <Manager pathname=""/>

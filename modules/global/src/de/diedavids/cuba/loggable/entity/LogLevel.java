@@ -1,5 +1,6 @@
 package de.diedavids.cuba.loggable.entity;
 
+import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Table(name = "ddcl_LOG_LEVEL")
 @Entity(name = "ddcl_LogLevel")
+@NamePattern("%s|name")
 public class LogLevel extends StandardEntity {
     private static final long serialVersionUID = -3640295999996523927L;
 

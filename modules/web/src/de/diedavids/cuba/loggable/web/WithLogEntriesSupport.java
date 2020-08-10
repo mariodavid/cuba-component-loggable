@@ -1,19 +1,22 @@
 package de.diedavids.cuba.loggable.web;
 
 import com.haulmont.cuba.core.global.BeanLocator;
-import com.haulmont.cuba.gui.WindowManager;
+import com.haulmont.cuba.core.global.Messages;
 import com.haulmont.cuba.gui.components.Button;
 import com.haulmont.cuba.gui.components.ButtonsPanel;
 import com.haulmont.cuba.gui.components.ListComponent;
+import com.haulmont.cuba.gui.components.actions.ItemTrackingAction;
 import com.haulmont.cuba.gui.components.actions.ListAction;
-import com.haulmont.cuba.gui.screen.Extensions;
-import com.haulmont.cuba.gui.screen.Screen;
-import com.haulmont.cuba.gui.screen.Subscribe;
-import de.diedavids.cuba.loggable.web.action.TableWithLogEntriesAction;
+import com.haulmont.cuba.gui.screen.*;
 
 import java.util.Collections;
 
 public interface WithLogEntriesSupport {
+
+
+    String BUTTON_MSG_KEY = "actions.logEntries";
+    String ICON_KEY = "font-icon:FILE_TEXT_O";
+
 
     /**
      * defines the list component that will be used as a basis for the logEntry functionality
@@ -45,8 +48,8 @@ public interface WithLogEntriesSupport {
     /**
      * option to configure the option type of the tag link
      */
-    default WindowManager.OpenType logEntryListOpenType() {
-        return WindowManager.OpenType.DIALOG;
+    default OpenMode logEntryListOpenType() {
+        return OpenMode.DIALOG;
     }
 
     @Subscribe
@@ -55,15 +58,29 @@ public interface WithLogEntriesSupport {
         Screen screen = event.getSource();
         Button button = createOrGetButton(screen);
 
-        ListAction action = new TableWithLogEntriesAction(
-                getListComponentForLogEntries(),
-                logEntryListOpenType()
-        );
+        initButtonWithTagsFunctionality(screen, button);
+    }
+
+    default void initButtonWithTagsFunctionality(Screen screen, Button button) {
+
+        WithLogEntriesSupportExecution withLogEntriesSupportExecution = getBeanLocator(screen).get(WithLogEntriesSupportExecution.class);
+        Messages messages = getBeanLocator(screen).get(Messages.class);
+
+
+        ListAction action = new ItemTrackingAction(getListComponentForLogEntries(), "logEntriesAction")
+                .withPrimary(true)
+                .withIcon(ICON_KEY)
+                .withCaption(messages.getMainMessage(BUTTON_MSG_KEY))
+                .withHandler(e -> withLogEntriesSupportExecution.openLogEntryBrowse(
+                        screen,
+                        getListComponentForLogEntries(),
+                        logEntryListOpenType()
+                ));
+
         getListComponentForLogEntries().addAction(action);
         button.setAction(action);
 
     }
-
     default Button createOrGetButton(Screen screen) {
         BeanLocator beanLocator = getBeanLocator(screen);
         ButtonsPanelHelper buttonsPanelHelper = beanLocator.get(ButtonsPanelHelper.NAME);
