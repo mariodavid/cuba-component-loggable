@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="logEntriesTable"
+        messagesPack="de.diedavids.cuba.loggable.web.screens.logentry">
+    <data readOnly="true">
+        <collection id="logEntriesDc"
+                    class="de.diedavids.cuba.loggable.entity.LogEntry"
+                    view="logEntry-view">
+            <loader id="logEntriesDl">
+                <query>
+                    <![CDATA[select e from ddcl_LogEntry e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="logEntriesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="logEntriesTable"
+                dataLoader="logEntriesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="logEntriesTable"
+                    width="100%"
+                    dataContainer="logEntriesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="level"/>
+                <column id="category"/>
+                <column id="message" maxTextLength="50"/>
+                <column id="loggable" link="true"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="logEntriesTable.create"/>
+                <button id="editBtn" action="logEntriesTable.edit"/>
+                <button id="removeBtn" action="logEntriesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

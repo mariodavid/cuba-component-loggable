@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="de.diedavids.cuba.loggable.web.screens.logentry">
+    <data>
+        <instance id="logEntryDc"
+                  class="de.diedavids.cuba.loggable.entity.LogEntry"
+                  view="logEntry-view">
+            <loader/>
+        </instance>
+        <collection id="categoriesDc" class="de.diedavids.cuba.loggable.entity.LogEntryCategory" view="_minimal">
+            <loader id="categoriesDl">
+                <query>
+                    <![CDATA[select e from ddcl_LogEntryCategory e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="levelsDc" class="de.diedavids.cuba.loggable.entity.LogLevel" view="_minimal">
+            <loader id="levelsDl">
+                <query>
+                    <![CDATA[select e from ddcl_LogLevel e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="logEntryDc">
+            <column width="250px">
+                <textField id="nameField" property="message"/>
+                <lookupPickerField id="categoryField" optionsContainer="categoriesDc" property="category">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                    </actions>
+                </lookupPickerField>
+                <lookupPickerField id="levelField" optionsContainer="levelsDc" property="level">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                    </actions>
+                </lookupPickerField>
+
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

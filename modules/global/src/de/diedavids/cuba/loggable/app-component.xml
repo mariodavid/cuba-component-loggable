@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<app-component xmlns="http://schemas.haulmont.com/cuba/app-component.xsd"
+               dependsOn="de.diedavids.cuba.entitysoftreference, com.haulmont.cuba">
+
+    <module name="global" blocks="*">
+        <artifact name="loggable-global" appJar="true"/>
+
+        <property name="cuba.persistenceConfig" value="+de/diedavids/cuba/loggable/persistence.xml"/>
+        <property name="cuba.metadataConfig" value="+de/diedavids/cuba/loggable/metadata.xml"/>
+        <property name="cuba.viewsConfig" value="+de/diedavids/cuba/loggable/views.xml"/>
+    </module>
+    <module name="core" dependsOn="global" blocks="core">
+        <artifact name="loggable-core" appJar="true"/>
+        <artifact name="loggable-core" classifier="db" ext="zip" configuration="dbscripts"/>
+
+        <property name="cuba.springContextConfig" value="+de/diedavids/cuba/loggable/spring.xml"/>
+        <property name="cuba.mainMessagePack" value="+de.diedavids.cuba.loggable.core"/>
+    </module>
+    <module name="gui" dependsOn="global" blocks="web,desktop">
+        <artifact name="loggable-gui" appJar="true"/>
+    </module>
+    <module name="web" dependsOn="gui" blocks="web">
+        <artifact name="loggable-web" appJar="true"/>
+        <artifact name="loggable-web" classifier="web" ext="zip" configuration="webcontent"/>
+
+        <property name="cuba.springContextConfig" value="+de/diedavids/cuba/loggable/web-spring.xml"/>
+        <property name="cuba.dispatcherSpringContextConfig"
+                  value="+de/diedavids/cuba/loggable/web-dispatcher-spring.xml"/>
+        <property name="cuba.windowConfig" value="+de/diedavids/cuba/loggable/web-screens.xml"/>
+        <property name="cuba.menuConfig" value="+de/diedavids/cuba/loggable/web-menu.xml"/>
+        <property name="cuba.permissionConfig" value="+de/diedavids/cuba/loggable/web-permissions.xml"/>
+        <property name="cuba.mainMessagePack" value="+de.diedavids.cuba.loggable.web"/>
+    </module>
+</app-component>

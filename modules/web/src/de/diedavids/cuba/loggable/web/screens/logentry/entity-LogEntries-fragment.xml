@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fragment xmlns="http://schemas.haulmont.com/cuba/screen/fragment.xsd">
+    <data>
+        <collection id="logEntriesDc"
+                    class="de.diedavids.cuba.loggable.entity.LogEntry"
+                    view="logEntry-view">
+            <loader id="logEntriesDl">
+                <query>
+                    <![CDATA[select e from ddcl_LogEntry e where e.loggable = :loggable]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <layout expand="logEntriesTable">
+        <table id="logEntriesTable" dataContainer="logEntriesDc" width="100%" height="200px">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="message"/>
+                <column id="file"
+                        link="true"/>
+                <column id="category"/>
+            </columns>
+            <buttonsPanel>
+                <button action="logEntriesTable.create"/>
+                <button action="logEntriesTable.edit"/>
+                <button action="logEntriesTable.remove"/>
+            </buttonsPanel>
+        </table>
+    </layout>
+</fragment>

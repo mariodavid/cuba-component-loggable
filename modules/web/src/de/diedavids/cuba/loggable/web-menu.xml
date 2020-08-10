@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-ddcl"
+          insertBefore="sys$FileDescriptor.browse">
+        <item screen="ddcl_LogEntryAll.browse"/>
+        <item screen="ddcl_LogEntryCategory.browse"/>
+        <item screen="ddcl_LogLevel.browse"/>
+    </menu>
+</menu-config>

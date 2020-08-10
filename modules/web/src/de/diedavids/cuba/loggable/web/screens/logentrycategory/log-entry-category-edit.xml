@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://logEntryCategoryEdit.caption"
+        focusComponent="form"
+        messagesPack="de.diedavids.cuba.loggable.web.screens.logentrycategory">
+    <data>
+        <instance id="logEntryCategoryDc"
+                  class="de.diedavids.cuba.loggable.entity.LogEntryCategory"
+                  view="_local">
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="AUTO"
+                width="AUTO"
+                modal="true"
+                forceDialog="true"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="logEntryCategoryDc">
+            <column width="350px">
+                <textField id="nameField" property="name"/>
+                <textField id="codeField" property="code"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
