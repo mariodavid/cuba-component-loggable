@@ -5,12 +5,7 @@
 
 # CUBA Platform Component - Loggable
 
-This application component lets you easily add logEntries to any entity in your application.
-
-
-Just add `@WithLogEntries` on the browse screen of your entity and the rest will be done by this app-component.
-
-![1-browse-with-logEntries](https://github.com/mariodavid/cuba-component-loggable/blob/master/img/1-browse-with-logEntries.png)
+This application component lets you easily add log entries to any entity in your application.
 
 
 ## Installation
@@ -20,11 +15,7 @@ Just add `@WithLogEntries` on the browse screen of your entity and the rest will
 
 | Platform Version | Add-on Version |
 | ---------------- | -------------- |
-| 7.1.x            | 0.7.x - 0.8.x  |
-| 7.0.x            | 0.6.x          |
-| 6.10.x           | 0.5.x          |
-| 6.9.x            | 0.2.x - 0.4.x  |
-| 6.8.x            | 0.1.x          |
+| 7.2.x            | 0.1.x          |
 
 
 The latest version is: [ ![Download](https://api.bintray.com/packages/mariodavid/cuba-components/cuba-component-loggable/images/download.svg) ](https://bintray.com/mariodavid/cuba-components/cuba-component-loggable/_latestVersion)
@@ -50,31 +41,7 @@ Therefore it is totally possible to use the application component even without d
 
 ### Browse Screens
 
-Annotate your browse screens with the `@WithLogEntries` annotation or by implementing the `WithLogEntriesSupport` interface,
-depending on which version of CUBA screen APIs is used in the target screen.
-
-#### @WithLogEntries annotation (CUBA 6 screens)
-
-```groovy
-@WithLogEntries(listComponent = "productsTable")
-class ProductBrowse extends AnnotatableAbstractLookup {
-}
-```
-
-
-For the `@WithLogEntries` annotation you need to define the list component on which it should add the logEntries button.
-Normally this is the `id` of the table you defined in your browse screen.
-
-This annotation will create a button in the buttonsPanel of the table and add the LogEntries button after the default CUBA buttons.
-
-The `@WithLogEntries` annotations can be customized through the following attributes:
-
-* `String listComponent` - the id of the list component / table where the button will be added - REQUIRED
-* `String buttonId` - the id of the newly created button that will be created ("logEntryBtn" by default)
-* `String buttonsPanel` - the id of the buttons panel where the new button will be added ("buttonsPanel" by default)
-
-
-#### WithLogEntriesSupport interface (CUBA 7 screens)
+Let your browse screens implement the `WithLogEntriesSupport` interface.
 
 ```java
 
@@ -111,7 +78,7 @@ In the Interface variant the following attributes have to be defined by implemen
 
 
 
-### Edit Screens (CUBA 7 screens)
+### Edit Screens
 
 Besides using LogEntries in the Browse Screen of the Entity, it is also possible to show LogEntries as part of an Edit Screen.
 
@@ -130,19 +97,6 @@ An example can be found in the [customer-edit.xml](https://github.com/mariodavid
 ### Example usage
 To see this application component in action, check out this example: [cuba-example-using-loggable](https://github.com/mariodavid/cuba-example-using-loggable).
 
-
-### LogEntry list
-
-The logEntry button will show all logEntries that have been added to a particular selected entity.
-It allows to add, edit & remove logEntries to this entity.
-![2-logEntries-list](https://github.com/mariodavid/cuba-component-loggable/blob/master/img/2-logEntries-list.png)
-
-### LogEntry preview
-Furthermore it gives the user the option to preview the logEntry directly in the browser or download the logEntry.
- 
-![3-logEntry-preview](https://github.com/mariodavid/cuba-component-loggable/blob/master/img/3-logEntry-preview.png)
-
-The ability to do the preview depends on the logEntry type and the browser capabilities.
 
 ### Configuration options
 
