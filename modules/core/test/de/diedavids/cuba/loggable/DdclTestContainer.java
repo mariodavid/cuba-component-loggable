@@ -1,11 +1,8 @@
 package de.diedavids.cuba.loggable;
 
-import com.haulmont.bali.util.Dom4j;
 import com.haulmont.cuba.testsupport.TestContainer;
-import org.dom4j.Document;
-import org.dom4j.Element;
+import org.junit.jupiter.api.extension.ExtensionContext;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -13,15 +10,12 @@ public class DdclTestContainer extends TestContainer {
 
     public DdclTestContainer() {
         super();
-        appComponents = new ArrayList<>(Arrays.asList(
-                "com.haulmont.cuba"
-                // add CUBA premium add-ons here
-                // "com.haulmont.bpm",
-                // "com.haulmont.charts",
-                // "com.haulmont.fts",
-                // "com.haulmont.reports",
-                // and custom app components if any
-        ));
+        //noinspection ArraysAsListWithZeroOrOneArgument
+        appComponents = Arrays.asList(
+                // list add-ons here: "com.haulmont.reports", "com.haulmont.addon.bproc", etc.
+                "com.haulmont.cuba",
+                "de.diedavids.cuba.entitysoftreference"
+        );
         appPropertiesFiles = Arrays.asList(
                 // List the files defined in your web.xml
                 // in appPropertiesConfig context parameter of the core module
@@ -29,30 +23,14 @@ public class DdclTestContainer extends TestContainer {
                 // Add this file which is located in CUBA and defines some properties
                 // specifically for test environment. You can replace it with your own
                 // or add another one in the end.
-                "test-app.properties");
-        initDbProperties();
+                "com/haulmont/cuba/testsupport/test-app.properties");
+        autoConfigureDataSource();
     }
 
-    private void initDbProperties() {
-        File contextXmlFile = new File("modules/core/web/META-INF/context.xml");
-        if (!contextXmlFile.exists()) {
-            contextXmlFile = new File("web/META-INF/context.xml");
-        }
-        if (!contextXmlFile.exists()) {
-            throw new RuntimeException("Cannot find 'context.xml' file to read database connection properties. " +
-                    "You can set them explicitly in this method.");
-        }
-        Document contextXmlDoc = Dom4j.readDocument(contextXmlFile);
-        Element resourceElem = contextXmlDoc.getRootElement().element("Resource");
-
-        dbDriver = resourceElem.attributeValue("driverClassName");
-        dbUrl = resourceElem.attributeValue("url");
-        dbUser = resourceElem.attributeValue("username");
-        dbPassword = resourceElem.attributeValue("password");
-    }
 
     public static class Common extends DdclTestContainer {
 
+        // A common singleton instance of the test container which is initialized once for all tests
         public static final DdclTestContainer.Common INSTANCE = new DdclTestContainer.Common();
 
         private static volatile boolean initialized;
@@ -61,16 +39,18 @@ public class DdclTestContainer extends TestContainer {
         }
 
         @Override
-        public void before() throws Throwable {
+        public void beforeAll(ExtensionContext extensionContext) throws Exception {
             if (!initialized) {
-                super.before();
+                super.beforeAll(extensionContext);
                 initialized = true;
             }
             setupContext();
         }
 
+
+        @SuppressWarnings("RedundantThrows")
         @Override
-        public void after() {
+        public void afterAll(ExtensionContext extensionContext) throws Exception {
             cleanupContext();
             // never stops - do not call super
         }
