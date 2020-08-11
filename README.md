@@ -96,10 +96,3 @@ An example can be found in the [customer-edit.xml](https://github.com/mariodavid
 
 ### Example usage
 To see this application component in action, check out this example: [cuba-example-using-loggable](https://github.com/mariodavid/cuba-example-using-loggable).
-
-
-### Configuration options
-
-The application components adds the following application properties, that can be changed in the corresponding screen (`Administration > Application Properties`):
-
-* `loggable.updateLogEntryCounterOnSelect` - whether or not a counter of logEntries should be displayed after a particular entity is selected in the table

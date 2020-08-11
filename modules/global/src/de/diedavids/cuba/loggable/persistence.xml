@@ -6,5 +6,6 @@
         <class>de.diedavids.cuba.loggable.entity.LogEntry</class>
         <class>de.diedavids.cuba.loggable.entity.LogEntryCategory</class>
         <class>de.diedavids.cuba.loggable.entity.LogLevel</class>
+        <class>de.diedavids.cuba.loggable.entity.sample.SampleEntity</class>
     </persistence-unit>
 </persistence>

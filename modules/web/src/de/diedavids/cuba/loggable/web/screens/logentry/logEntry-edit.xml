@@ -24,25 +24,39 @@
             </loader>
         </collection>
     </data>
-    <dialogMode height="600"
-                width="800"/>
-    <layout expand="editActions" spacing="true">
-        <form id="form" dataContainer="logEntryDc">
-            <column width="250px">
-                <textField id="nameField" property="message"/>
+    <dialogMode width="800" height="600" forceDialog="true"/>
+    <layout expand="detailedMessageField" spacing="true">
+        <form id="form" captionPosition="TOP" dataContainer="logEntryDc">
+            <column width="200px">
                 <lookupPickerField id="categoryField" optionsContainer="categoriesDc" property="category">
                     <actions>
                         <action id="lookup" type="picker_lookup"/>
                     </actions>
                 </lookupPickerField>
+            </column>
+            <column width="200px">
                 <lookupPickerField id="levelField" optionsContainer="levelsDc" property="level">
                     <actions>
                         <action id="lookup" type="picker_lookup"/>
                     </actions>
                 </lookupPickerField>
-
+            </column>
+            <column width="200px">
+                <dateField id="createTsField" property="createTs" />
             </column>
         </form>
+        <textArea
+                id="messageField"
+                editable="false"
+                width="100%"
+                rows="5"
+                caption="msg://de.diedavids.cuba.loggable.entity.LogEntry/LogEntry.message"
+                property="message"/>
+        <textArea id="detailedMessageField"
+                  editable="false"
+                  width="100%"
+                  caption="msg://de.diedavids.cuba.loggable.entity.LogEntry/LogEntry.detailedMessage"
+                  property="detailedMessage"/>
         <hbox id="editActions" spacing="true">
             <button action="windowCommitAndClose"/>
             <button action="windowClose"/>

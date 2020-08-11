@@ -11,6 +11,8 @@
             <map>
                 <entry key="ddcl_LogEntryService"
                        value="de.diedavids.cuba.loggable.service.LogEntryService"/>
+                <entry key="ddcl_LogEntryGenerationService"
+                       value="de.diedavids.cuba.loggable.service.sample.LogEntryGenerationService"/>
             </map>
         </property>
     </bean>

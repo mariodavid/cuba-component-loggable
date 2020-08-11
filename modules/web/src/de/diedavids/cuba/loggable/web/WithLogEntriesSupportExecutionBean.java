@@ -5,7 +5,6 @@ import com.haulmont.cuba.gui.ScreenBuilders;
 import com.haulmont.cuba.gui.components.ListComponent;
 import com.haulmont.cuba.gui.screen.FrameOwner;
 import com.haulmont.cuba.gui.screen.OpenMode;
-import de.diedavids.cuba.loggable.config.LoggableConfiguration;
 import de.diedavids.cuba.loggable.service.LogEntryService;
 import de.diedavids.cuba.loggable.web.screens.logentry.LogEntryBrowse;
 import org.springframework.stereotype.Component;
@@ -16,12 +15,6 @@ import javax.inject.Inject;
 
 public class WithLogEntriesSupportExecutionBean implements WithLogEntriesSupportExecution {
 
-    @Inject
-    private LogEntryService logEntryService;
-    @Inject
-    private LoggableConfiguration loggableConfiguration;
-    @Inject
-    private Messages messages;
     @Inject
     private ScreenBuilders screenBuilders;
 

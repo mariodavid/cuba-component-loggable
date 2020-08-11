@@ -25,13 +25,14 @@
         </filter>
         <groupTable id="logEntriesTable"
                     width="100%"
+                    multiselect="true"
                     dataContainer="logEntriesDc">
             <actions>
-                <action id="create" type="create"/>
-                <action id="edit" type="edit"/>
+                <action id="view" type="view"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
+                <column id="createTs" sort="DESCENDING"/>
                 <column id="level"/>
                 <column id="category"/>
                 <column id="message" maxTextLength="50"/>
@@ -39,6 +40,7 @@
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
+                <button id="viewBtn" action="logEntriesTable.view"/>
                 <button id="removeBtn" action="logEntriesTable.remove"/>
             </buttonsPanel>
         </groupTable>

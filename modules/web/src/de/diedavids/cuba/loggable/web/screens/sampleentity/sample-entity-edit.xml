@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://sampleEntityEdit.caption"
+        focusComponent="form"
+        messagesPack="de.diedavids.cuba.loggable.web.screens.sampleentity">
+    <data>
+        <instance id="sampleEntityDc"
+                  class="de.diedavids.cuba.loggable.entity.sample.SampleEntity">
+            <view extends="_local"/>
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="AUTO"
+                width="AUTO"
+                modal="true"
+                forceDialog="true"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="sampleEntityDc">
+            <column width="350px">
+                <textField id="customerNameField" property="customerName"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

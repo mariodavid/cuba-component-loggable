@@ -11,6 +11,8 @@ import com.haulmont.cuba.gui.screen.*;
 
 import java.util.Collections;
 
+import static com.haulmont.cuba.gui.screen.Extensions.getBeanLocator;
+
 public interface WithLogEntriesSupport {
 
 
@@ -81,14 +83,11 @@ public interface WithLogEntriesSupport {
         button.setAction(action);
 
     }
+
     default Button createOrGetButton(Screen screen) {
         BeanLocator beanLocator = getBeanLocator(screen);
         ButtonsPanelHelper buttonsPanelHelper = beanLocator.get(ButtonsPanelHelper.NAME);
         return buttonsPanelHelper.createButton(getButtonIdForLogEntries(), getButtonsPanelForLogEntries(), Collections.emptyList());
-    }
-
-    default BeanLocator getBeanLocator(Screen screen) {
-        return Extensions.getBeanLocator(screen);
     }
 
 }

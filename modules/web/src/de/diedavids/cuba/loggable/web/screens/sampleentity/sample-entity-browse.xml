@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://sampleEntityBrowse.caption"
+        focusComponent="sampleEntitiesTable"
+        messagesPack="de.diedavids.cuba.loggable.web.screens.sampleentity">
+    <data readOnly="true">
+        <collection id="sampleEntitiesDc"
+                    class="de.diedavids.cuba.loggable.entity.sample.SampleEntity">
+            <view extends="_local"/>
+            <loader id="sampleEntitiesDl">
+                <query>
+                    <![CDATA[select e from ddcl_SampleEntity e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="sampleEntitiesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="sampleEntitiesTable"
+                dataLoader="sampleEntitiesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="sampleEntitiesTable"
+                    width="100%"
+                    dataContainer="sampleEntitiesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="generateLogs" trackSelection="true" caption="msg://generateLogs"/>
+            </actions>
+            <columns>
+                <column id="customerName"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="sampleEntitiesTable.create"/>
+                <button id="editBtn" action="sampleEntitiesTable.edit"/>
+                <button id="removeBtn" action="sampleEntitiesTable.remove"/>
+                <button id="generateLogsBtn" action="sampleEntitiesTable.generateLogs"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
