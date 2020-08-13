@@ -1,4 +1,4 @@
-package de.diedavids.cuba.loggable.web.screens.sampleentity;
+package de.diedavids.cuba.loggable.web;
 
 import com.haulmont.cuba.gui.screen.*;
 import de.diedavids.cuba.loggable.entity.sample.SampleEntity;

@@ -3,8 +3,6 @@
              version="2.0">
     <persistence-unit name="cuba-component-loggable"
                       transaction-type="RESOURCE_LOCAL">
-        <class>de.diedavids.cuba.loggable.entity.LogEntry</class>
-        <class>de.diedavids.cuba.loggable.entity.LogEntryCategory</class>
-        <class>de.diedavids.cuba.loggable.entity.LogLevel</class>
+        <class>de.diedavids.cuba.loggable.entity.sample.SampleEntity</class>
     </persistence-unit>
 </persistence>

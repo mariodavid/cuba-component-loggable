@@ -3,7 +3,7 @@
         xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
         caption="msg://sampleEntityBrowse.caption"
         focusComponent="sampleEntitiesTable"
-        messagesPack="de.diedavids.cuba.loggable.web.screens.sampleentity">
+        messagesPack="de.diedavids.cuba.loggable.web">
     <data readOnly="true">
         <collection id="sampleEntitiesDc"
                     class="de.diedavids.cuba.loggable.entity.sample.SampleEntity">

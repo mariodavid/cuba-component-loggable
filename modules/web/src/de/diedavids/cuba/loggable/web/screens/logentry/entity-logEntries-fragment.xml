@@ -12,21 +12,19 @@
         </collection>
     </data>
     <layout expand="logEntriesTable">
-        <table id="logEntriesTable" dataContainer="logEntriesDc" width="100%" height="200px">
+        <table id="logEntriesTable" dataContainer="logEntriesDc" width="100%">
             <actions>
-                <action id="create" type="create"/>
-                <action id="edit" type="edit"/>
+                <action id="view" type="view"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="message"/>
-                <column id="file"
-                        link="true"/>
-                <column id="category"/>
+                <column id="createTs" expandRatio="0.15" sort="DESCENDING"/>
+                <column id="category" expandRatio="0.1"/>
+                <column id="level" expandRatio="0.1"/>
+                <column id="message" maxTextLength="50" expandRatio="0.65"/>
             </columns>
             <buttonsPanel>
-                <button action="logEntriesTable.create"/>
-                <button action="logEntriesTable.edit"/>
+                <button action="logEntriesTable.view"/>
                 <button action="logEntriesTable.remove"/>
             </buttonsPanel>
         </table>

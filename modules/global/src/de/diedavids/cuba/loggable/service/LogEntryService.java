@@ -1,11 +1,14 @@
 package de.diedavids.cuba.loggable.service;
 
 import com.haulmont.cuba.core.entity.Entity;
+import com.haulmont.cuba.core.global.DataManager;
+import com.haulmont.cuba.core.global.EntitySet;
 import de.diedavids.cuba.loggable.entity.LogEntry;
 import de.diedavids.cuba.loggable.entity.LogEntryCategory;
 import de.diedavids.cuba.loggable.entity.LogLevel;
 
 import java.util.Collection;
+import java.util.Optional;
 
 
 public interface LogEntryService {
@@ -15,11 +18,15 @@ public interface LogEntryService {
 
     Collection<LogEntry> getLogEntries(Entity loggable);
 
+
     LogEntry createLogEntry(
-            Entity loggable,
-            String message,
-            String detailedMessage,
-            LogLevel level,
-            LogEntryCategory category
+            LogEntrySource logEntryDescription
     );
+
+    EntitySet createLogEntries(
+            Collection<LogEntrySource> logEntryDescriptions
+    );
+
+
+
 }

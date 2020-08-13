@@ -5,10 +5,13 @@ import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-@Table(name = "ddcl_LOG_LEVEL")
+@Table(name = "ddcl_LOG_LEVEL", indexes = {
+        @Index(name = "IDX_DDCL_LOG_LEVEL_CODE", columnList = "CODE")
+})
 @Entity(name = "ddcl_LogLevel")
 @NamePattern("%s|name")
 public class LogLevel extends StandardEntity {

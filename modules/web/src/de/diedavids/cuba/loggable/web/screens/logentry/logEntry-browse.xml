@@ -32,10 +32,10 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="createTs" sort="DESCENDING"/>
-                <column id="level"/>
-                <column id="category"/>
-                <column id="message" maxTextLength="50"/>
+                <column id="createTs" expandRatio="0.15" sort="DESCENDING"/>
+                <column id="category" expandRatio="0.1"/>
+                <column id="level" expandRatio="0.1"/>
+                <column id="message" maxTextLength="50" expandRatio="0.65"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

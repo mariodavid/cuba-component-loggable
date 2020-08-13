@@ -2,7 +2,7 @@
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         caption="msg://sampleEntityEdit.caption"
         focusComponent="form"
-        messagesPack="de.diedavids.cuba.loggable.web.screens.sampleentity">
+        messagesPack="de.diedavids.cuba.loggable.web.sample.sampleentity">
     <data>
         <instance id="sampleEntityDc"
                   class="de.diedavids.cuba.loggable.entity.sample.SampleEntity">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
-        caption="msg://browseCaption"
+        caption="msg://allBrowseCaption"
         focusComponent="logEntriesTable"
         messagesPack="de.diedavids.cuba.loggable.web.screens.logentry">
     <data readOnly="true">
@@ -27,21 +27,20 @@
                     width="100%"
                     dataContainer="logEntriesDc">
             <actions>
-                <action id="create" type="create"/>
-                <action id="edit" type="edit"/>
+                <action id="view" type="view"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="level"/>
-                <column id="category"/>
-                <column id="message" maxTextLength="50"/>
-                <column id="loggable" link="true"/>
+                <column id="createTs" expandRatio="0.15" sort="DESCENDING"/>
+                <column id="category" expandRatio="0.1"/>
+                <column id="level" expandRatio="0.1"/>
+                <column id="message" maxTextLength="50" expandRatio="0.5"/>
+                <column id="loggable" link="true" expandRatio="0.15"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="logEntriesTable.create"/>
-                <button id="editBtn" action="logEntriesTable.edit"/>
+                <button id="viewBtn" action="logEntriesTable.view"/>
                 <button id="removeBtn" action="logEntriesTable.remove"/>
             </buttonsPanel>
         </groupTable>

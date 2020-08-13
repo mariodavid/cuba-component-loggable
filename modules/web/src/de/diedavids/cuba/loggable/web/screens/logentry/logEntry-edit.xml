@@ -47,12 +47,14 @@
         </form>
         <textArea
                 id="messageField"
+                dataContainer="logEntryDc"
                 editable="false"
                 width="100%"
                 rows="5"
                 caption="msg://de.diedavids.cuba.loggable.entity.LogEntry/LogEntry.message"
                 property="message"/>
         <textArea id="detailedMessageField"
+                  dataContainer="logEntryDc"
                   editable="false"
                   width="100%"
                   caption="msg://de.diedavids.cuba.loggable.entity.LogEntry/LogEntry.detailedMessage"

@@ -52,19 +52,3 @@ create table DDCL_LOG_ENTRY (
     primary key (ID)
 )^
 -- end DDCL_LOG_ENTRY
--- begin DDCL_SAMPLE_ENTITY
-create table DDCL_SAMPLE_ENTITY (
-    ID varchar(36) not null,
-    VERSION integer not null,
-    CREATE_TS timestamp,
-    CREATED_BY varchar(50),
-    UPDATE_TS timestamp,
-    UPDATED_BY varchar(50),
-    DELETE_TS timestamp,
-    DELETED_BY varchar(50),
-    --
-    CUSTOMER_NAME varchar(255),
-    --
-    primary key (ID)
-)^
--- end DDCL_SAMPLE_ENTITY

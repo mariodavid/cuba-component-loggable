@@ -5,6 +5,7 @@ import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.ViewBuilder;
 import de.diedavids.cuba.loggable.entity.LogEntryCategory;
 import de.diedavids.cuba.loggable.entity.LogLevel;
+import de.diedavids.cuba.loggable.global.LogEntriesBean;
 import org.springframework.stereotype.Service;
 import de.diedavids.cuba.loggable.service.sample.LogEntryGenerationService;
 import org.springframework.util.CollectionUtils;
@@ -13,6 +14,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Service(LogEntryGenerationService.NAME)
@@ -22,23 +24,27 @@ public class LogEntryGenerationServiceBean implements LogEntryGenerationService 
     protected DataManager dataManager;
     @Inject
     protected LogEntryService logEntryService;
+    @Inject
+    protected LogEntriesBean logEntries;
 
     @Override
     public void generate(Entity loggable, int amount) {
 
-        IntStream.range(0, amount)
-                .forEach(value -> {
+        List<LogEntrySource> allEntries = IntStream.range(0, amount)
+                .mapToObj(value -> {
                     final List<LogLevel> allLevels = list(LogLevel.class);
                     final List<LogEntryCategory> allCategories = list(LogEntryCategory.class);
 
-                    logEntryService.createLogEntry(
-                            loggable,
-                            "hello " + value,
-                            "hello world " + value,
-                            randomOfList(allLevels),
-                            randomOfList(allCategories)
-                    );
-                });
+                    return logEntries.message(loggable)
+                            .withLevel(randomOfList(allLevels))
+                            .withCategory(randomOfList(allCategories))
+                            .withMessage("hello " + value)
+                            .withDetailedMessage("hello world " + value)
+                            .build();
+                })
+                .collect(Collectors.toList());
+
+        logEntryService.createLogEntries(allEntries);
 
     }
 

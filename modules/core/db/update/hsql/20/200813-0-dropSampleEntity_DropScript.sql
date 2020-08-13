@@ -1,0 +1,1 @@
+drop table DDCL_SAMPLE_ENTITY__U32974 if exists cascade ;
