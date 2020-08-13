@@ -2,6 +2,7 @@ package de.diedavids.cuba.loggable.service;
 
 import com.haulmont.cuba.core.entity.Entity;
 import com.haulmont.cuba.core.global.DataManager;
+import de.diedavids.cuba.loggable.LogEntrySource;
 import de.diedavids.cuba.loggable.entity.LogEntry;
 import de.diedavids.cuba.loggable.entity.LogEntryCategory;
 import de.diedavids.cuba.loggable.entity.LogLevel;
@@ -39,6 +40,7 @@ public class LogEntryDescription implements LogEntrySource {
     @Override
     public LogEntry toLogEntry(DataManager dataManager) {
         LogEntry logEntry = dataManager.create(LogEntry.class);
+
         logEntry.setLoggable(loggable);
         logEntry.setMessage(message);
         logEntry.setDetailedMessage(detailedMessage);
@@ -62,61 +64,4 @@ public class LogEntryDescription implements LogEntrySource {
                 .orElse(null);
     }
 
-
-    public static class Builder {
-        private Entity loggable;
-        private String message;
-        private String detailedMessage;
-        private LogLevel level;
-        private LogEntryCategory category;
-        private String levelCode;
-        private String categoryCode;
-
-        private Builder() {
-        }
-
-        public static Builder logEntry(Entity loggable) {
-            Builder builder = new Builder();
-            builder.withLoggable(loggable);
-            return builder;
-        }
-        public Builder withLoggable(Entity loggable) {
-            this.loggable = loggable;
-            return this;
-        }
-
-        public Builder withMessage(String message) {
-            this.message = message;
-            return this;
-        }
-
-        public Builder withDetailedMessage(String detailedMessage) {
-            this.detailedMessage = detailedMessage;
-            return this;
-        }
-
-        public Builder withLevel(LogLevel level) {
-            this.level = level;
-            return this;
-        }
-
-        public Builder withCategory(LogEntryCategory category) {
-            this.category = category;
-            return this;
-        }
-
-        public Builder withLevelCode(String levelCode) {
-            this.levelCode = levelCode;
-            return this;
-        }
-
-        public Builder withCategoryCode(String categoryCode) {
-            this.categoryCode = categoryCode;
-            return this;
-        }
-
-        public LogEntryDescription build() {
-            return new LogEntryDescription(loggable, message, detailedMessage, level, category, levelCode, categoryCode);
-        }
-    }
 }

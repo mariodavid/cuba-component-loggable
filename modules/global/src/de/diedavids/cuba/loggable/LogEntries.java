@@ -1,7 +1,6 @@
-package de.diedavids.cuba.loggable.global;
+package de.diedavids.cuba.loggable;
 
 import com.haulmont.cuba.core.entity.Entity;
-import de.diedavids.cuba.loggable.service.LogEntrySource;
 
 public interface LogEntries {
 

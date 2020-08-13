@@ -1,10 +1,9 @@
-package de.diedavids.cuba.loggable.global;
+package de.diedavids.cuba.loggable;
 
 import com.haulmont.cuba.core.entity.Entity;
 import de.diedavids.cuba.loggable.entity.LogEntryCategory;
 import de.diedavids.cuba.loggable.entity.LogLevel;
 import de.diedavids.cuba.loggable.service.LogEntryDescription;
-import de.diedavids.cuba.loggable.service.LogEntrySource;
 import org.springframework.stereotype.Component;
 
 @Component(LogEntriesBean.NAME)

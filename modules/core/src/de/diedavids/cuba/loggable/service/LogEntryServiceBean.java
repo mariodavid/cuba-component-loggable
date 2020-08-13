@@ -5,6 +5,7 @@ import com.haulmont.cuba.core.global.CommitContext;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.EntitySet;
 import de.diedavids.cuba.entitysoftreference.SoftReferenceService;
+import de.diedavids.cuba.loggable.LogEntrySource;
 import de.diedavids.cuba.loggable.entity.LogEntry;
 import org.springframework.stereotype.Service;
 
