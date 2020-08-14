@@ -39,6 +39,53 @@ Therefore it is totally possible to use the application component even without d
 
 ## Using the application component
 
+### Creating Log Entries
+
+In source code you can create Log Entries by using the `LogEntryService`. The service contains the following API:
+
+```java
+    /**
+     * loads all Log Entries for a given loggable entity
+     * @param loggable the entity to check for Log Entries
+     * @return the Log Entries
+     */
+    Collection<LogEntry> getLogEntries(Entity loggable);
+
+
+    /**
+     * Creates and stores one Log Entry based on the given LogEntrySource
+     * @param logEntryDescription the LogEntrySource which will be stored
+     * @return the resulting saved LogEntry
+     */
+    LogEntry createLogEntry(
+            LogEntrySource logEntryDescription
+    );
+
+    /**
+     * Creates and stores multiple Log Entries based on the given LogEntrySource
+     * @param logEntryDescriptions the LogEntrySources which will be stored
+     * @return the resulting saved Log Entries as an EntitySet
+     */
+    EntitySet createLogEntries(
+            Collection<LogEntrySource> logEntryDescriptions
+    );
+``` 
+
+The way to create the `LogEntrySource` objects is done via the `LogEntries` API. This API has methods to create different builders, for creating specific Log Entries. Here is an example of its usage:
+
+```java
+logEntryService.createLogEntry(
+        logEntries.message(loggable)
+                .withLevel(infoLevel)
+                .withCategory(validationCategory)
+                .withMessage("The Validation was successfull. No errors found.")
+                .withDetailedMessage("Details of the Validation: Customer Name = 'Homer Simpson'")
+                .build()
+);
+```
+
+
+
 ### Browse Screens
 
 Let your browse screens implement the `WithLogEntriesSupport` interface.

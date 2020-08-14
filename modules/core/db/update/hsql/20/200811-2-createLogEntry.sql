@@ -1,5 +1,0 @@
-alter table DDCL_LOG_ENTRY add constraint FK_DDCL_LOG_ENTRY_LEVEL foreign key (LEVEL_ID) references ddcl_LOG_LEVEL(ID);
-alter table DDCL_LOG_ENTRY add constraint FK_DDCL_LOG_ENTRY_CATEGORY foreign key (CATEGORY_ID) references DDCL_LOG_ENTRY_CATEGORY(ID);
-create index IDX_DDCL_LOG_ENTRY_LEVEL on DDCL_LOG_ENTRY (LEVEL_ID);
-create index IDX_DDCL_LOG_ENTRY_CATEGORY on DDCL_LOG_ENTRY (CATEGORY_ID);
-create index IDX_DDCL_LOG_ENTRY on DDCL_LOG_ENTRY (LOGGABLE);
