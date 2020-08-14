@@ -43,8 +43,6 @@ public class EntityLogEntriesFragment extends ScreenFragment {
     @Inject
     protected CollectionLoader<LogEntry> logEntriesDl;
     @Inject
-    protected ScreenBuilders screenBuilders;
-    @Inject
     protected Table<LogEntry> logEntriesTable;
 
     private InstanceContainer<? extends Entity> loggableDc;
@@ -76,14 +74,6 @@ public class EntityLogEntriesFragment extends ScreenFragment {
 
         logEntriesDl.setParameter("loggable", loggableDc.getItem());
         logEntriesDl.load();
-    }
-
-    @Subscribe("logEntriesTable.create")
-    protected void onLogEntriesTableCreate(Action.ActionPerformedEvent event) {
-        screenBuilders.editor(logEntriesTable)
-                .newEntity()
-                .withInitializer(logEntry -> logEntry.setLoggable(loggableDc.getItem()))
-                .show();
     }
 
 }
