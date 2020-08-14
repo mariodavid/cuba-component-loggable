@@ -150,5 +150,16 @@ It is possible to assign a level as well as a category to the log entry. Both of
 
 In the Administration Menu `Administration > Log Entries` there are management UIs for creating those categorizations.
 
+The `code` attribute is used for referencing them in source code, which simplifies the creation of a log entry without having to do manual lookups via `dataManager` all over the place. An example of the codes from source code: 
+
+````java
+logEntries.message(loggable)
+        .withLevelCode("WARNING")
+        .withCategoryCode("VALIDATION")
+        .withMessage("The Validation was successfull. No errors found.")
+        .withDetailedMessage("Details of the Validation: Customer Name = 'Homer Simpson'")
+        .build()
+````
+
 ### Example usage
 To see this application component in action, check out this example: [cuba-example-using-loggable](https://github.com/mariodavid/cuba-example-using-loggable).
