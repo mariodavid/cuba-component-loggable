@@ -1,7 +1,6 @@
 [ ![Download](https://api.bintray.com/packages/mariodavid/cuba-components/cuba-component-loggable/images/download.svg) ](https://bintray.com/mariodavid/cuba-components/cuba-component-loggable/_latestVersion)
 [![license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Build Status](https://travis-ci.org/mariodavid/cuba-component-loggable.svg?branch=master)](https://travis-ci.org/mariodavid/cuba-component-loggable)
-[![Coverage Status](https://coveralls.io/repos/github/mariodavid/cuba-component-loggable/badge.svg)](https://coveralls.io/github/mariodavid/cuba-component-loggable)
 
 # CUBA Platform Component - Loggable
 
