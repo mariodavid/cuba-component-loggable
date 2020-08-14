@@ -1,12 +1,10 @@
 package de.diedavids.cuba.loggable.web;
 
-import com.haulmont.cuba.gui.components.Action;
 import com.haulmont.cuba.gui.components.ButtonsPanel;
 import com.haulmont.cuba.gui.components.GroupTable;
 import com.haulmont.cuba.gui.components.ListComponent;
 import com.haulmont.cuba.gui.screen.*;
 import de.diedavids.cuba.loggable.entity.sample.SampleEntity;
-import de.diedavids.cuba.loggable.service.sample.LogEntryGenerationService;
 
 import javax.inject.Inject;
 
@@ -22,8 +20,6 @@ public class SampleEntityBrowse extends StandardLookup<SampleEntity> implements
 
     @Inject
     protected ButtonsPanel buttonsPanel;
-    @Inject
-    protected LogEntryGenerationService logEntryGenerationService;
 
     @Override
     public ListComponent getListComponentForLogEntries() {
@@ -33,10 +29,5 @@ public class SampleEntityBrowse extends StandardLookup<SampleEntity> implements
     @Override
     public ButtonsPanel getButtonsPanelForLogEntries() {
         return buttonsPanel;
-    }
-
-    @Subscribe("sampleEntitiesTable.generateLogs")
-    protected void onImportEntriesTableGenerateLogs(Action.ActionPerformedEvent event) {
-        logEntryGenerationService.generate(sampleEntitiesTable.getSingleSelected(), 10);
     }
 }
