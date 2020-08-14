@@ -34,7 +34,7 @@ The following databases are supported by this application component:
 * PostgreSQL
 
 All other DBMS systems are supported in the way, that CUBA studio automatically creates DDL scripts.
-Therefore it is totally possible to use the application component even without dedicated SQL scripts directly from this application component.
+Therefore, it is totally possible to use the application component even without dedicated SQL scripts directly from this application component.
 
 ## Using the application component
 
@@ -139,6 +139,16 @@ In order to do display logEntries of a particular Entity there is a `fragment` w
 ```
 
 An example can be found in the [customer-edit.xml](https://github.com/mariodavid/cuba-example-using-loggable/blob/master/modules/web/src/com/company/ceua/web/customer/customer-edit.xml#L53).
+
+
+### Log Entry Level & Categorization
+
+It is possible to assign a level as well as a category to the log entry. Both of them are ways to categorize the log message.
+
+* Log Level: normally is used for expressing the severity of the message. Example values: `Info`, `Warning`, `Error`
+* Log Entry Category: this is a way to describe the sub part of the business where the message belongs to. Examples might be `Validation`, `Import`, `Customer Interaction` etc.
+
+In the Administration Menu `Administration > Log Entries` there are management UIs for creating those categorizations.
 
 ### Example usage
 To see this application component in action, check out this example: [cuba-example-using-loggable](https://github.com/mariodavid/cuba-example-using-loggable).

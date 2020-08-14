@@ -9,7 +9,7 @@ import java.util.List;
 public interface ButtonsPanelHelper {
 
 
-    String NAME = "dbcdc_ButtonsPanelHelper";
+    String NAME = "ddcl_ButtonsPanelHelper";
 
     /**
      * Creates or determines a button from a button panel
