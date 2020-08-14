@@ -4,6 +4,7 @@ import com.haulmont.cuba.core.entity.Entity;
 import de.diedavids.cuba.loggable.entity.LogEntryCategory;
 import de.diedavids.cuba.loggable.entity.LogLevel;
 import de.diedavids.cuba.loggable.service.LogEntryDescription;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.stereotype.Component;
 
 @Component(LogEntriesBean.NAME)
@@ -12,17 +13,62 @@ public class LogEntriesBean implements LogEntries {
 
     @Override
     public MessageLogEntryBuilder message(Entity loggable) {
-        MessageLogEntryBuilder builder = new MessageLogEntryBuilder();
-        builder.withLoggable(loggable);
-        return builder;
+        return new MessageLogEntryBuilder(loggable);
     }
 
     @Override
-    public LogEntrySourceBuilder exception(Entity loggable, Throwable throwable) {
-        return null;
+    public ExceptionLogEntryBuilder exception(Entity loggable, Throwable throwable) {
+        return new ExceptionLogEntryBuilder(loggable, throwable);
     }
 
 
+    public static class ExceptionLogEntryBuilder implements LogEntrySourceBuilder {
+        private Entity loggable;
+        private Throwable throwable;
+        private LogLevel level;
+        private LogEntryCategory category;
+        private String levelCode;
+        private String categoryCode;
+
+        private ExceptionLogEntryBuilder(Entity loggable, Throwable throwable) {
+            this.loggable = loggable;
+            this.throwable = throwable;
+        }
+
+
+        public ExceptionLogEntryBuilder withLevel(LogLevel level) {
+            this.level = level;
+            return this;
+        }
+
+        public ExceptionLogEntryBuilder withCategory(LogEntryCategory category) {
+            this.category = category;
+            return this;
+        }
+
+        public ExceptionLogEntryBuilder withLevelCode(String levelCode) {
+            this.levelCode = levelCode;
+            return this;
+        }
+
+        public ExceptionLogEntryBuilder withCategoryCode(String categoryCode) {
+            this.categoryCode = categoryCode;
+            return this;
+        }
+
+        @Override
+        public LogEntrySource build() {
+            return new LogEntryDescription(
+                loggable,
+                throwable.getMessage(),
+                ExceptionUtils.getStackTrace(throwable),
+                level,
+                category,
+                levelCode,
+                categoryCode
+            );
+        }
+    }
     public static class MessageLogEntryBuilder implements LogEntrySourceBuilder {
         private Entity loggable;
         private String message;
@@ -32,12 +78,8 @@ public class LogEntriesBean implements LogEntries {
         private String levelCode;
         private String categoryCode;
 
-        private MessageLogEntryBuilder() {
-        }
-
-        public MessageLogEntryBuilder withLoggable(Entity loggable) {
+        private MessageLogEntryBuilder(Entity loggable) {
             this.loggable = loggable;
-            return this;
         }
 
         public MessageLogEntryBuilder withMessage(String message) {
@@ -72,7 +114,15 @@ public class LogEntriesBean implements LogEntries {
 
         @Override
         public LogEntrySource build() {
-            return new LogEntryDescription(loggable, message, detailedMessage, level, category, levelCode, categoryCode);
+            return new LogEntryDescription(
+                loggable,
+                message,
+                detailedMessage,
+                level,
+                category,
+                levelCode,
+                categoryCode
+            );
         }
     }
 

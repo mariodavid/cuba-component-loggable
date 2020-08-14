@@ -3,6 +3,7 @@ package de.diedavids.cuba.loggable.service;
 import com.haulmont.cuba.core.entity.Entity;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.ViewBuilder;
+import de.diedavids.cuba.loggable.LogEntries;
 import de.diedavids.cuba.loggable.LogEntrySource;
 import de.diedavids.cuba.loggable.entity.LogEntryCategory;
 import de.diedavids.cuba.loggable.entity.LogLevel;
@@ -26,7 +27,7 @@ public class LogEntryGenerationServiceBean implements LogEntryGenerationService 
     @Inject
     protected LogEntryService logEntryService;
     @Inject
-    protected LogEntriesBean logEntries;
+    protected LogEntries logEntries;
 
     @Override
     public void generate(Entity loggable, int amount) {
