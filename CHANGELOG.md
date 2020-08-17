@@ -6,8 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.2.0] - 17/08/2020
 
-
-### Change
+### Change (breaking)
 - `createLogEntry --> saveLogEntry` in `LogEntryService`
 - `createLogEntries --> saveLogEntries` in `LogEntryService`
 
