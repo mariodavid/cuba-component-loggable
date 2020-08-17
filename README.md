@@ -43,6 +43,7 @@ Therefore, it is totally possible to use the application component even without 
 In source code you can create Log Entries by using the `LogEntryService`. The service contains the following API:
 
 ```java
+    
     /**
      * loads all Log Entries for a given loggable entity
      * @param loggable the entity to check for Log Entries
@@ -52,28 +53,47 @@ In source code you can create Log Entries by using the `LogEntryService`. The se
 
 
     /**
-     * Creates and stores one Log Entry based on the given LogEntrySource
+     * Creates multiple Log Entries based on the given LogEntrySource
+     * @param logEntryDescription the LogEntrySources which will be stored
+     * @return the resulting saved Log Entries as an EntitySet
+     */
+    LogEntry createLogEntry(
+        LogEntrySource logEntryDescription
+    );
+
+    /**
+     * Saves one Log Entry based on the given LogEntrySource
      * @param logEntryDescription the LogEntrySource which will be stored
      * @return the resulting saved LogEntry
      */
-    LogEntry createLogEntry(
+    LogEntry saveLogEntry(
             LogEntrySource logEntryDescription
     );
 
     /**
-     * Creates and stores multiple Log Entries based on the given LogEntrySource
+     * Creates multiple Log Entries based on the given LogEntrySource
      * @param logEntryDescriptions the LogEntrySources which will be stored
      * @return the resulting saved Log Entries as an EntitySet
      */
-    EntitySet createLogEntries(
+    Collection<LogEntry> createLogEntries(
+        Collection<LogEntrySource> logEntryDescriptions
+    );
+
+    /**
+     * Saves multiple Log Entries based on the given LogEntrySource
+     * @param logEntryDescriptions the LogEntrySources which will be stored
+     * @return the resulting saved Log Entries as an EntitySet
+     */
+    EntitySet saveLogEntries(
             Collection<LogEntrySource> logEntryDescriptions
     );
+
 ``` 
 
 The way to create the `LogEntrySource` objects is done via the `LogEntries` API. This API has methods to create different builders, for creating specific Log Entries. Here is an example of its usage:
 
 ```java
-logEntryService.createLogEntry(
+logEntryService.saveLogEntry(
         logEntries.message(loggable)
                 .withLevel(infoLevel)
                 .withCategory(validationCategory)

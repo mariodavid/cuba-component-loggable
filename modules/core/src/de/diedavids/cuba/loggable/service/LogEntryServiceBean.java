@@ -37,12 +37,37 @@ public class LogEntryServiceBean implements LogEntryService {
     }
 
     @Override
-    public LogEntry createLogEntry(LogEntrySource description) {
+    public LogEntry createLogEntry(LogEntrySource logEntryDescription) {
+        return convertToLogEntry(logEntryDescription);
+    }
 
-        LogEntry logEntry = description.toLogEntry(dataManager);
+    @Override
+    public LogEntry saveLogEntry(LogEntrySource description) {
+
+        final LogEntry logEntry = createLogEntry(description);
+
         EntitySet persistedEntries = persistLogEntries(Collections.singletonList(logEntry));
+
         return persistedEntries.get(LogEntry.class, logEntry.getId());
 
+    }
+
+
+    @Override
+    public EntitySet saveLogEntries(Collection<LogEntrySource> logEntryDescriptions) {
+        return persistLogEntries(createLogEntries(logEntryDescriptions));
+
+    }
+
+    @Override
+    public Collection<LogEntry> createLogEntries(Collection<LogEntrySource> logEntryDescriptions) {
+        return logEntryDescriptions.stream()
+            .map(this::convertToLogEntry)
+            .collect(Collectors.toList());
+    }
+
+    private LogEntry convertToLogEntry(LogEntrySource description) {
+        return description.toLogEntry(dataManager);
     }
 
     private EntitySet persistLogEntries(Collection<LogEntry> logEntries) {
@@ -50,16 +75,5 @@ public class LogEntryServiceBean implements LogEntryService {
         logEntries.forEach(commitContext::addInstanceToCommit);
         return dataManager.commit(commitContext);
     }
-
-    @Override
-    public EntitySet createLogEntries(Collection<LogEntrySource> logEntryDescriptions) {
-        List<LogEntry> logEntries = logEntryDescriptions.stream()
-                .map(description -> description.toLogEntry(dataManager))
-                .collect(Collectors.toList());
-
-        return persistLogEntries(logEntries);
-
-    }
-
 
 }

@@ -1,6 +1,7 @@
 package de.diedavids.cuba.loggable.service;
 
 import com.haulmont.cuba.core.entity.Entity;
+import com.haulmont.cuba.core.global.CommitContext;
 import com.haulmont.cuba.core.global.EntitySet;
 import de.diedavids.cuba.loggable.LogEntrySource;
 import de.diedavids.cuba.loggable.entity.LogEntry;
@@ -28,21 +29,40 @@ public interface LogEntryService {
 
 
     /**
-     * Creates and stores one Log Entry based on the given LogEntrySource
+     * Creates multiple Log Entries based on the given LogEntrySource
+     * @param logEntryDescription the LogEntrySources which will be stored
+     * @return the resulting saved Log Entries as an EntitySet
+     */
+    LogEntry createLogEntry(
+        LogEntrySource logEntryDescription
+    );
+
+    /**
+     * Saves one Log Entry based on the given LogEntrySource
      * @param logEntryDescription the LogEntrySource which will be stored
      * @return the resulting saved LogEntry
      */
-    LogEntry createLogEntry(
+    LogEntry saveLogEntry(
             LogEntrySource logEntryDescription
     );
 
     /**
-     * Creates and stores multiple Log Entries based on the given LogEntrySource
+     * Creates multiple Log Entries based on the given LogEntrySource
      * @param logEntryDescriptions the LogEntrySources which will be stored
      * @return the resulting saved Log Entries as an EntitySet
      */
-    EntitySet createLogEntries(
+    Collection<LogEntry> createLogEntries(
+        Collection<LogEntrySource> logEntryDescriptions
+    );
+
+    /**
+     * Saves multiple Log Entries based on the given LogEntrySource
+     * @param logEntryDescriptions the LogEntrySources which will be stored
+     * @return the resulting saved Log Entries as an EntitySet
+     */
+    EntitySet saveLogEntries(
             Collection<LogEntrySource> logEntryDescriptions
     );
+
 
 }
