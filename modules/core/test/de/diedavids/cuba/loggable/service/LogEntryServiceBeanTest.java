@@ -15,26 +15,14 @@ import de.diedavids.cuba.loggable.LogEntries;
 import de.diedavids.cuba.loggable.entity.LogEntry;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-
-
-import com.haulmont.cuba.core.global.AppBeans;
-import com.haulmont.cuba.core.global.DataManager;
-import com.haulmont.cuba.testsupport.TestContainer;
-import de.diedavids.cuba.loggable.DdclTestContainer;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 
+@Disabled
 class LogEntryServiceBeanTest {
 
 
